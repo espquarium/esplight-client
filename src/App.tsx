@@ -2,14 +2,20 @@ import cogoToast from "cogo-toast";
 import { useState } from "react";
 import { useEffect } from "react";
 import Body from "./components/Body";
+import Divisor from "./components/Divisor";
 import NavBar from "./components/NavBar";
 import TimesTable from "./components/TimesTable";
 import useApi from "./hooks/useApi";
+import useDebounce from "./hooks/useDebounce";
 import { ILightTime } from "./typings/EspLight";
+// @ts-ignore
+import isEqual from "lodash.isequal";
 
 function App() {
   const api = useApi();
+
   const [times, setTimes] = useState<ILightTime[]>([]);
+  const [editableTimes, setEditableTimes] = useState<ILightTime[]>();
 
   useEffect(() => {
     if (api.serverUrl) {
@@ -27,10 +33,29 @@ function App() {
     }
   }, [api.serverUrl]);
 
+  useDebounce(
+    () => {
+      if (api.serverUrl && editableTimes) {
+        api.api
+          .put("/light-times", editableTimes)
+          .then(({ data }) => {
+            cogoToast.success("saved light times");
+            setTimes(data);
+          })
+          .catch(() => {
+            cogoToast.error("error when save data, check your device");
+          });
+      }
+    },
+    750,
+    [editableTimes]
+  );
+
   return (
     <Body>
       <NavBar />
-      <TimesTable times={times} />
+      <Divisor height={20} />
+      <TimesTable times={times} editTimes={setEditableTimes} />
     </Body>
   );
 }

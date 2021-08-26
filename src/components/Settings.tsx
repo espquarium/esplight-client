@@ -3,72 +3,11 @@ import cogoToast from "cogo-toast";
 import React from "react";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import styled from "styled-components";
-import COLORS from "../COLORS";
 import useApi from "../hooks/useApi";
 import { SERVER_URL_KEY } from "../providers/ServerProvider";
-
-const Wrapper = styled.div`
-  height: 100%;
-  z-index: 9;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: ${COLORS.background};
-
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px 0 20px;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h1 {
-    color: ${COLORS.primary};
-  }
-`;
-
-const Card = styled.div`
-  border-radius: 10px;
-  background-color: white;
-  color: black;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Input = styled.input`
-  /* background-color: ${COLORS.primary}; */
-  border-radius: 10px;
-  border: 1px solid black;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-indent: 10px;
-
-  :focus {
-    outline: none;
-  }
-`;
-
-const Button = styled.button`
-  background-color: ${COLORS.primary};
-  color: white;
-  font-weight: bold;
-  width: 100%;
-  border-radius: 10px;
-  border: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 1rem;
-`;
-
-const Divisor = styled.div`
-  height: 10px;
-`;
+import Card from "./Card";
+import Divisor from "./Divisor";
+import FullScreenModal, { Button, Header, Input } from "./FullScreenModal";
 
 const Settings: React.FC<{ toggle: CallableFunction }> = ({ toggle }) => {
   const api = useApi();
@@ -93,7 +32,7 @@ const Settings: React.FC<{ toggle: CallableFunction }> = ({ toggle }) => {
   };
 
   return (
-    <Wrapper>
+    <FullScreenModal>
       <Header>
         <h1>Settings</h1>
         <AiOutlineClose color="black" size={20} onClick={() => toggle()} />
@@ -116,7 +55,7 @@ const Settings: React.FC<{ toggle: CallableFunction }> = ({ toggle }) => {
         <Divisor />
         <Button onClick={() => save()}>Save</Button>
       </Card>
-    </Wrapper>
+    </FullScreenModal>
   );
 };
 
