@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Body from "./components/Body";
 import NavBar from "./components/NavBar";
+import TimesTable from "./components/TimesTable";
 import useApi from "./hooks/useApi";
 import { ILightTime } from "./typings/EspLight";
 
@@ -24,11 +25,12 @@ function App() {
     } else {
       cogoToast.info("no server found in configuration, please add before use");
     }
-  }, []);
+  }, [api.serverUrl]);
 
   return (
     <Body>
       <NavBar />
+      <TimesTable times={times} />
     </Body>
   );
 }

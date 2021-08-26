@@ -16,5 +16,5 @@ type FixedLengthArray<T extends any[]> = Pick<
 export interface ILightTime {
   h: number;
   m: number;
-  c: FixedLengthArray<[number, number, number]>;
+  c: FixedLengthArray<[number, number, number, number]>;
 }

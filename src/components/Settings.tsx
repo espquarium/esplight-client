@@ -1,7 +1,12 @@
+import axios from "axios";
+import cogoToast from "cogo-toast";
 import React from "react";
+import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import styled from "styled-components";
 import COLORS from "../COLORS";
+import useApi from "../hooks/useApi";
+import { SERVER_URL_KEY } from "../providers/ServerProvider";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -42,6 +47,11 @@ const Input = styled.input`
   border: 1px solid black;
   padding-top: 10px;
   padding-bottom: 10px;
+  text-indent: 10px;
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const Button = styled.button`
@@ -61,9 +71,26 @@ const Divisor = styled.div`
 `;
 
 const Settings: React.FC<{ toggle: CallableFunction }> = ({ toggle }) => {
-  // const autoDetect = () = > {
+  const api = useApi();
 
-  // }
+  const [ip, setIp] = useState(api.serverUrl);
+
+  const changeIp = (value: string) => {
+    setIp(value.includes("http") ? value : `http://${value}`);
+  };
+
+  const test = () => {
+    axios
+      .get(`${ip}/verify`)
+      .then(() => cogoToast.success("success, server connected"))
+      .catch((err) => cogoToast.error("server not found"));
+  };
+
+  const save = () => {
+    window.localStorage.setItem(SERVER_URL_KEY, ip);
+    cogoToast.success("ip saved");
+    api.setServerUrl(ip);
+  };
 
   return (
     <Wrapper>
@@ -74,18 +101,21 @@ const Settings: React.FC<{ toggle: CallableFunction }> = ({ toggle }) => {
 
       <Card>
         <label htmlFor="ipv4">Server ipv4</label>
+        <Divisor />
         <Input
           id="ipv4"
-          type="text"
+          type="url"
+          name="ip"
+          value={ip}
           placeholder="type server ip here"
           pattern="^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])$"
+          onChange={({ target }) => changeIp(target.value)}
         />
         <Divisor />
-        <Button>Save</Button>
+        <Button onClick={() => test()}>Test</Button>
+        <Divisor />
+        <Button onClick={() => save()}>Save</Button>
       </Card>
-      <Divisor />
-      <Divisor />
-      <Button>Automatic detection</Button>
     </Wrapper>
   );
 };
