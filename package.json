@@ -1,7 +1,8 @@
 {
   "name": "esplight-client",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://espquarium.github.io/esplight-client/",
+  "private": false,
   "dependencies": {
     "@types/styled-components": "^5.1.12",
     "axios": "^0.21.1",
