@@ -1,6 +1,5 @@
 import React from "react";
 import { ILightTime } from "../typings/EspLight";
-import format from "date-fns/format";
 import styled from "styled-components";
 import COLORS from "../COLORS";
 import { IoMdAdd } from "react-icons/io";

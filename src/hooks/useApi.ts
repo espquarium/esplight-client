@@ -1,13 +1,17 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { ServerContext } from "../providers/ServerProvider";
 
 const useApi = () => {
   const { serverUrl, setServerUrl } = useContext(ServerContext);
 
-  const api = axios.create({
-    baseURL: serverUrl,
-  });
+  const api = useMemo(
+    () =>
+      axios.create({
+        baseURL: serverUrl,
+      }),
+    [serverUrl]
+  );
 
   return { api, serverUrl, setServerUrl };
 };

@@ -5,6 +5,7 @@ const useDebounce = (
   delay: number,
   deps: any[]
 ) => {
+  // @ts-ignore
   const callback = useCallback(effect, deps);
 
   useEffect(() => {

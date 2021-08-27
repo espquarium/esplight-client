@@ -8,8 +8,6 @@ import TimesTable from "./components/TimesTable";
 import useApi from "./hooks/useApi";
 import useDebounce from "./hooks/useDebounce";
 import { ILightTime } from "./typings/EspLight";
-// @ts-ignore
-import isEqual from "lodash.isequal";
 
 function App() {
   const api = useApi();
