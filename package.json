@@ -1,5 +1,6 @@
 {
   "name": "esplight-client",
+  "license": "MIT",
   "version": "0.1.0",
   "homepage": "https://espquarium.github.io/esplight-client/",
   "private": false,
