@@ -1248,6 +1248,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@coinsamba/react-tiny-hooks@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@coinsamba/react-tiny-hooks/-/react-tiny-hooks-0.3.2.tgz#abda4f2a6f56e48e0ec9cbd3d5a018bd194ca600"
+  integrity sha512-+1Sp+JEl6MoQdE09L4HseR4W4nwOljauHaPCDcghu7+fkLLh7mgHRKVG1TqVF2t43RGL86tAqCTIJUsZZfZl1w==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"

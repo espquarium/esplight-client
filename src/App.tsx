@@ -6,7 +6,7 @@ import Divisor from "./components/Divisor";
 import NavBar from "./components/NavBar";
 import TimesTable from "./components/TimesTable";
 import useApi from "./hooks/useApi";
-import useDebounce from "./hooks/useDebounce";
+import { useDebounce } from "@coinsamba/react-tiny-hooks";
 import { ILightTime } from "./typings/EspLight";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
     } else {
       cogoToast.info("no server found in configuration, please add before use");
     }
-  }, [api.serverUrl]);
+  }, [api.serverUrl, api.api]);
 
   useDebounce(
     () => {

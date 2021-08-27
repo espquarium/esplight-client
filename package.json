@@ -5,6 +5,7 @@
   "homepage": "https://espquarium.github.io/esplight-client/",
   "private": false,
   "dependencies": {
+    "@coinsamba/react-tiny-hooks": "^0.3.2",
     "@types/styled-components": "^5.1.12",
     "axios": "^0.21.1",
     "cogo-toast": "^4.2.3",

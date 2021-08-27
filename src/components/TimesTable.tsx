@@ -208,7 +208,7 @@ const TimesTable: React.FC<{
             }${minutes}`;
 
             return (
-              <TR>
+              <TR key={`row${i}`}>
                 <TD data-label="Time" scope="row">
                   <InputTable
                     type="time"
