@@ -5,6 +5,7 @@ import { ILightTime } from "../typings/EspLight";
 import Card from "./Card";
 import Divisor from "./Divisor";
 import FullScreenModal, { Button, Header, Input } from "./FullScreenModal";
+import moment from "moment";
 
 const AddTime: React.FC<{
   toggle: CallableFunction;
@@ -16,11 +17,14 @@ const AddTime: React.FC<{
   const save = () => {
     if (date) {
       const tTimes = [...times];
-      const offSet = date.getTimezoneOffset() / 60;
+
+      const momentDate = moment(date)
+        .utc()
+        .add(date.getTimezoneOffset(), "minutes");
 
       tTimes.push({
-        h: date.getUTCHours() + offSet,
-        m: date.getUTCMinutes(),
+        h: momentDate.get("hours"),
+        m: momentDate.get("minutes"),
         c: [0, 0, 0, 0],
       });
 

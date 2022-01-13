@@ -6,6 +6,7 @@ import { IoMdAdd } from "react-icons/io";
 import { AiFillCloseCircle } from "react-icons/ai";
 import useToggle from "../hooks/useToggle";
 import AddTime from "./AddTime";
+import moment from "moment";
 
 export const Table = styled.table`
   width: 100%;
@@ -144,21 +145,25 @@ const TimesTable: React.FC<{
 }> = ({ times, editTimes }) => {
   const [addModal, toggle] = useToggle(false);
 
-  const editChannel = (value: string, i: number, chi: 0 | 1 | 2 | 3) => {
+  const editChannel = (value: string, time: number, channel: 0 | 1 | 2 | 3) => {
     const numberPattern = /\d+/g;
     value = value.match(numberPattern)?.join("") || "0";
-    console.log(value);
     const tTimes = [...times];
-    tTimes[i].c[chi] = parseInt(value);
+    tTimes[time].c[channel] = parseInt(value);
     editTimes(tTimes);
+    console.log(`editChannel ${time} - ${channel}`);
   };
 
-  const editTime = (day: Date | null, i: number) => {
-    if (day) {
-      const offSet = day.getTimezoneOffset() / 60;
+  const editTime = (date: Date | null, i: number) => {
+    if (date) {
       const tTimes = [...times];
-      tTimes[i].h = day.getUTCHours() + offSet;
-      tTimes[i].m = day.getUTCMinutes();
+
+      const momentDate = moment(date)
+        .utc()
+        .add(date.getTimezoneOffset(), "minutes");
+
+      tTimes[i].h = momentDate.get("hours");
+      tTimes[i].m = momentDate.get("minutes");
       editTimes(tTimes);
     }
   };
@@ -195,7 +200,7 @@ const TimesTable: React.FC<{
           </TR>
         </THead>
         <TBody>
-          {times.map((t, i) => {
+          {times.map((t, timeNumber) => {
             const day = new Date();
             day.setUTCHours(t.h);
             day.setUTCMinutes(t.m);
@@ -208,26 +213,34 @@ const TimesTable: React.FC<{
             }${minutes}`;
 
             return (
-              <TR key={`row${i}`}>
+              <TR key={`row${timeNumber}`}>
                 <TD data-label="Time" scope="row">
                   <InputTable
                     type="time"
                     value={label}
-                    onChange={({ target }) => editTime(target.valueAsDate, i)}
+                    onChange={({ target }) =>
+                      editTime(target.valueAsDate, timeNumber)
+                    }
                   />
                 </TD>
-                {t.c.map((ch, chi) => (
-                  <TD data-label={`ch${chi}`}>
+                {t.c.map((ch, channel) => (
+                  <TD data-label={`ch${channel}`}>
                     <InputTable
                       value={`${ch}%`}
                       onChange={({ target }) =>
-                        editChannel(target.value, i, chi as 0 | 1 | 2 | 3)
+                        editChannel(
+                          target.value,
+                          timeNumber,
+                          channel as 0 | 1 | 2 | 3
+                        )
                       }
                     />
                   </TD>
                 ))}
                 <TD data-label="action">
-                  <AiFillCloseCircle onClick={() => confirmDelete(label, i)} />
+                  <AiFillCloseCircle
+                    onClick={() => confirmDelete(label, timeNumber)}
+                  />
                 </TD>
               </TR>
             );
