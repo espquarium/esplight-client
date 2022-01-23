@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/esplight-client/static/css/main.ff576dba.chunk.css",
-    "main.js": "/esplight-client/static/js/main.19340baf.chunk.js",
-    "main.js.map": "/esplight-client/static/js/main.19340baf.chunk.js.map",
-    "runtime-main.js": "/esplight-client/static/js/runtime-main.337a8c12.js",
-    "runtime-main.js.map": "/esplight-client/static/js/runtime-main.337a8c12.js.map",
-    "static/js/2.a712d8ca.chunk.js": "/esplight-client/static/js/2.a712d8ca.chunk.js",
-    "static/js/2.a712d8ca.chunk.js.map": "/esplight-client/static/js/2.a712d8ca.chunk.js.map",
-    "index.html": "/esplight-client/index.html",
-    "static/css/main.ff576dba.chunk.css.map": "/esplight-client/static/css/main.ff576dba.chunk.css.map",
-    "static/js/2.a712d8ca.chunk.js.LICENSE.txt": "/esplight-client/static/js/2.a712d8ca.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.ff576dba.chunk.css",
+    "main.js": "/static/js/main.19340baf.chunk.js",
+    "main.js.map": "/static/js/main.19340baf.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e597fe4f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e597fe4f.js.map",
+    "static/js/2.16852bbe.chunk.js": "/static/js/2.16852bbe.chunk.js",
+    "static/js/2.16852bbe.chunk.js.map": "/static/js/2.16852bbe.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.ff576dba.chunk.css.map": "/static/css/main.ff576dba.chunk.css.map",
+    "static/js/2.16852bbe.chunk.js.LICENSE.txt": "/static/js/2.16852bbe.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.337a8c12.js",
-    "static/js/2.a712d8ca.chunk.js",
+    "static/js/runtime-main.e597fe4f.js",
+    "static/js/2.16852bbe.chunk.js",
     "static/css/main.ff576dba.chunk.css",
     "static/js/main.19340baf.chunk.js"
   ]
