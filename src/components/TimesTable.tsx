@@ -158,9 +158,7 @@ const TimesTable: React.FC<{
     if (date) {
       const tTimes = [...times];
 
-      const momentDate = moment(date)
-        .utc()
-        .add(date.getTimezoneOffset(), "minutes");
+      const momentDate = moment(date);
 
       tTimes[i].h = momentDate.get("hours");
       tTimes[i].m = momentDate.get("minutes");

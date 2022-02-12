@@ -18,9 +18,7 @@ const AddTime: React.FC<{
     if (date) {
       const tTimes = [...times];
 
-      const momentDate = moment(date)
-        .utc()
-        .add(date.getTimezoneOffset(), "minutes");
+      const momentDate = moment(date);
 
       tTimes.push({
         h: momentDate.get("hours"),
