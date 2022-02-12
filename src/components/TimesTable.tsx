@@ -158,7 +158,7 @@ const TimesTable: React.FC<{
     if (date) {
       const tTimes = [...times];
 
-      const momentDate = moment(date);
+      const momentDate = moment(date).add(date.getTimezoneOffset(), "minutes");
 
       tTimes[i].h = momentDate.get("hours");
       tTimes[i].m = momentDate.get("minutes");
@@ -200,8 +200,8 @@ const TimesTable: React.FC<{
         <TBody>
           {times.map((t, timeNumber) => {
             const day = new Date();
-            day.setUTCHours(t.h);
-            day.setUTCMinutes(t.m);
+            day.setHours(t.h);
+            day.setMinutes(t.m);
 
             const hours = day.getHours();
             const minutes = day.getMinutes();
